@@ -1,0 +1,42 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "src/**",               
+          "config/**",           
+          "migrations/**",         
+          "seeders/**",            
+          ".sequelizerc",         
+          "public_admin/**",       
+          "public_frontend/**"    
+         
+        ]
+      }
+    }
+  ],
+  "routes": [
+   
+    {
+      "src": "/(.*\\.(js|css|html|txt|ico|png|jpg|jpeg|gif|svg))$",
+      "dest": "/public_frontend/$1" 
+    },
+    
+    {
+      "src": "/admin/static/(.*)",
+      "dest": "/public_admin/$1"
+    },
+   
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.js" 
+    }
+  ],
+  
+  "github": {
+    "silent": true 
+  }
+}
