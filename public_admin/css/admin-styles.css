@@ -1,0 +1,257 @@
+/* public_admin/css/admin-styles.css - AMOLED Dark Theme */
+
+:root {
+    --amoled-bg: #000000;         /* True black background */
+    --surface-bg: #121212;       /* Very dark grey for surfaces like containers, nav */
+    --surface-highlight: #1e1e1e;/* Slightly lighter dark grey for hover, accents */
+    --primary-text: #e0e0e0;     /* Light grey for primary text */
+    --secondary-text: #a0a0a0;   /* Medium grey for secondary text, timestamps */
+    --accent-color1: #007acc;     /* A vibrant blue for links, user elements */
+    --accent-color2: #2a9d8f;     /* A teal/green for AI elements or other accents */
+    --error-color: #cf6679;       /* Material Design dark theme error color */
+    --border-color: #2c2c2c;     /* Dark border color */
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--amoled-bg);
+    color: var(--primary-text);
+    line-height: 1.6;
+}
+
+nav {
+    background-color: var(--surface-bg);
+    padding: 15px 30px;
+    display: flex;
+    gap: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5); /* More pronounced shadow on dark */
+    border-bottom: 1px solid var(--border-color);
+}
+
+nav .nav-brand {
+    color: var(--primary-text);
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+nav a {
+    color: var(--secondary-text);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.2s ease-in-out;
+}
+nav a:hover {
+    color: var(--accent-color1);
+    text-decoration: none;
+}
+nav .user-info { /* For "Logged in as" */
+    color: var(--secondary-text);
+    margin-right: 15px;
+}
+
+
+.container {
+    padding: 25px 30px;
+    max-width: 1200px;
+    margin: 25px auto;
+    background-color: var(--surface-bg);
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    border: 1px solid var(--border-color);
+}
+
+h1, h2, h3 {
+    color: var(--primary-text);
+    font-weight: 300; /* Lighter headings */
+}
+
+h1 {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 2em;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 12px 15px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+th {
+    background-color: var(--surface-highlight); /* Or #000 if you want it fully merged */
+    font-weight: 600;
+    color: var(--secondary-text);
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.75px;
+}
+
+tr:nth-child(even) {
+    background-color: var(--surface-highlight); /* Or keep it same as --surface-bg for less contrast */
+}
+tr:hover {
+    background-color: #2a2a2a; /* Slightly lighter than surface-highlight */
+}
+
+a {
+    color: var(--accent-color1);
+}
+a:hover {
+    text-decoration: underline;
+}
+p > a, td > a {
+    font-weight: 500;
+    color: var(--accent-color1);
+}
+p > a:hover, td > a:hover {
+    color: #3b9eff; /* Lighter blue on hover */
+}
+
+
+/* --- Chat Message Specific Styles (AMOLED Dark Theme) --- */
+.conversation-header { margin-bottom: 20px; }
+.conversation-header h1 { font-size: 1.8em; margin-bottom: 8px; }
+.conversation-header p { font-size: 0.95em; color: var(--secondary-text); margin-top: 0; margin-bottom: 5px; }
+.conversation-header hr { border: 0; border-top: 1px solid var(--border-color); margin-top: 20px; margin-bottom: 25px; }
+
+.chat-container { max-width: 800px; margin: 20px auto; padding: 0 10px; }
+
+.message-row { display: flex; margin-bottom: 20px; align-items: flex-end; }
+.message-row.user-row { justify-content: flex-end; }
+.message-row.model-row { justify-content: flex-start; }
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: var(--primary-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1em;
+    margin: 0 10px; /* Increased margin for avatar */
+    flex-shrink: 0;
+    margin-bottom: 5px; /* Aligns with bubble bottom */
+}
+
+.model-avatar { background-color: var(--accent-color2); order: 1; } /* Teal/Green for AI */
+.user-avatar { background-color: var(--accent-color1); order: 2; }  /* Blue for User */
+
+.message-bubble {
+    max-width: 75%;
+    padding: 12px 18px;
+    border-radius: 18px;
+    line-height: 1.5;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3); /* Shadow for depth */
+    word-wrap: break-word;
+    position: relative; /* For pseudo-element tails if desired */
+}
+
+.message-row.user-row .message-bubble { order: 1; }
+.message-row.model-row .message-bubble { order: 2; }
+
+.message-bubble.user {
+    background-color: var(--accent-color1); /* User bubble color */
+    color: white; /* Text on user bubble */
+    border-bottom-right-radius: 5px; /* Tail effect */
+}
+
+.message-bubble.model {
+    background-color: #3a3a3c; /* Dark grey for AI bubble, distinct from surface */
+    color: var(--primary-text);
+    border-bottom-left-radius: 5px; /* Tail effect */
+}
+
+/* Optional: Triangle tails for bubbles (pure CSS) */
+/* .message-bubble::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+}
+.message-bubble.user::before {
+    right: -8px; 
+    border-left-color: var(--accent-color1);
+    border-bottom-color: var(--accent-color1);
+}
+.message-bubble.model::before {
+    left: -8px;
+    border-right-color: #3a3a3c; 
+    border-bottom-color: #3a3a3c;
+} */
+
+
+.message-bubble .role {
+    font-size: 0.7em;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    opacity: 0.7;
+}
+.message-bubble.user .role { display: none; }
+.message-bubble.model .role { color: var(--secondary-text); }
+
+.message-bubble .content { font-size: 0.95em; white-space: pre-wrap; }
+/* Text colors are inherited from .message-bubble.user and .message-bubble.model */
+
+.message-bubble .timestamp {
+    font-size: 0.7em;
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    opacity: 0.6;
+    color: inherit; /* Inherit from bubble's text color, then adjust opacity */
+}
+.message-bubble.user .timestamp { color: rgba(255,255,255,0.7); }
+.message-bubble.model .timestamp { color: var(--secondary-text); }
+
+
+/* AMOLED Dark theme Login Form Styles */
+.login-container {
+    background-color: var(--surface-bg);
+    border: 1px solid var(--border-color);
+    /* ... rest of login styles from previous, adjust colors using CSS variables ... */
+}
+.login-container h2 { color: var(--primary-text); }
+.form-group label { color: var(--secondary-text); }
+.form-group input[type="text"], .form-group input[type="password"] {
+    border: 1px solid var(--border-color);
+    background-color: var(--amoled-bg); /* Or a very dark input field color */
+    color: var(--primary-text);
+}
+.form-group input[type="text"]:focus, .form-group input[type="password"]:focus {
+    border-color: var(--accent-color1);
+    box-shadow: 0 0 0 2px_rgba(var(--accent-color1-rgb), 0.3); /* Define --accent-color1-rgb if using rgba */
+}
+.form-group button { background-color: var(--accent-color1); }
+.form-group button:hover { background-color: #005fa3; /* Darker shade of accent1 */ }
+.error {
+    color: var(--error-color);
+    background-color: rgba(207, 102, 121, 0.1); /* Error bg with opacity */
+    border: 1px solid var(--error-color);
+}
+
+/* AMOLED Dark theme Error Page Styles */
+.error-page-container h1 { color: var(--error-color); }
+.error-page-container pre {
+    background-color: var(--surface-highlight);
+    color: var(--primary-text);
+    border: 1px solid var(--border-color);
+}

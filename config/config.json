@@ -1,0 +1,19 @@
+{
+  "development": {
+    "dialect": "sqlite",
+    "storage": "./data/chat_app_dev.sqlite",
+    "migrationStorageTableName": "sequelize_meta"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+  "use_env_variable": "DATABASE_URL", 
+  "dialect": "sqlite",
+  "migrationStorageTableName": "sequelize_meta_prod"
+}
+}

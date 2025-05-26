@@ -1,0 +1,40 @@
+<!-- src/views/admin/errorPage.ejs -->
+
+<!-- You can decide if this error page itself uses the main layout or is standalone -->
+<!-- Option A: Using the main layout -->
+<%- include('layout', { title: title || 'Error Occurred', loggedInUser: typeof loggedInUser !== 'undefined' ? loggedInUser : null }) %>
+
+<h1><%= message || 'An Unspecified Error Occurred' %></h1>
+
+<% if (typeof errorDetails !== 'undefined' && errorDetails && process.env.NODE_ENV === 'development') { %>
+    <p><strong>Details:</strong></p>
+    <pre style="background-color: #f0f0f0; padding: 10px; border: 1px solid #ccc; white-space: pre-wrap; word-wrap: break-word;"><%= errorDetails %></pre>
+<% } %>
+
+<p><a href="/admin/dashboard">Go to Admin Dashboard</a></p>
+<p><a href="javascript:history.back()">Go Back</a></p>
+
+
+<!-- Option B: Standalone error page (if you don't want the full admin layout for errors) -->
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title || 'Error Occurred' %></title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+        h1 { color: #d9534f; }
+        pre { background-color: #f0f0f0; padding: 10px; border: 1px solid #ccc; text-align: left; white-space: pre-wrap; word-wrap: break-word; max-width: 800px; margin: 20px auto; }
+    </style>
+</head>
+<body>
+    <h1><%= message || 'An Unspecified Error Occurred' %></h1>
+    <% if (typeof errorDetails !== 'undefined' && errorDetails && process.env.NODE_ENV === 'development') { %>
+        <pre><%= errorDetails %></pre>
+    <% } %>
+    <p><a href="/admin/dashboard">Go to Admin Dashboard</a></p>
+    <p><a href="javascript:history.back()">Go Back</a></p>
+</body>
+</html>
+-->

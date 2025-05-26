@@ -1,0 +1,35 @@
+<!-- src/views/admin/userConversations.ejs -->
+<h1>Conversations for User: <%= targetUser.username %> (ID: <%= targetUser.id %>)</h1>
+<p><a href="/admin/users">« Back to Users List</a></p>
+
+<% if (typeof conversations !== 'undefined' && conversations && conversations.length > 0) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Last Updated</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% conversations.forEach(function(convo) { %>
+                <tr>
+                    <td><%= convo.id %></td>
+                    <td><a href="/admin/conversations/<%= convo.id %>/messages"><%= convo.title %></a></td> <!-- Title is also a link -->
+                    <td><%= new Date(convo.updatedAt).toLocaleString() %></td>
+                    <td><%= new Date(convo.createdAt).toLocaleString() %></td>
+                    <td>
+                        <!-- This link goes to the route that shows messages for this convo.id -->
+                        <a href="/admin/conversations/<%= convo.id %>/messages">View Messages</a>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% } else if (typeof conversations !== 'undefined' && conversations.length === 0) { %>
+    <p>This user has no conversations.</p>
+<% } else { %>
+    <p>Error: Conversations data not available to display.</p>
+<% } %>

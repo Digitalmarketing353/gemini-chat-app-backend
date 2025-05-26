@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini AI Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Material Icons (Outlined style) -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <!-- Authentication Container -->
+    <div id="auth-container">
+        <!-- Login Form Container (Initially visible) -->
+        <div id="login-form-container" class="auth-form"> <!-- JS will manage 'active-form' or display -->
+            <h1>Welcome Back!</h1>
+            <h2>Login to continue your conversations</h2>
+            <form id="login-form">
+                <div>
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" placeholder="Enter your username" required>
+                </div>
+                <div>
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit">Login</button>
+                <p id="login-error" class="error-message" style="display:none;"></p>
+            </form>
+            <p class="or-divider">Or</p>
+            <div class="google-login-button-container">
+                <a href="/api/auth/google" class="google-login-button">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/24px-Google_%22G%22_logo.svg.png" alt="Google icon" class="google-icon">
+                    <span>Sign in with Google</span>
+                </a>
+            </div>
+            <p class="switch-form-link">New user? <a href="#" id="show-register-link">Create an account</a></p>
+        </div>
+
+        <!-- Register Form Container (Initially hidden) -->
+        <div id="register-form-container" class="auth-form" style="display:none;">
+            <h1>Create Your Account</h1>
+            <h2>Join to start chatting with AI</h2>
+            <form id="register-form">
+                <div>
+                    <label for="register-username">Username</label>
+                    <input type="text" id="register-username" placeholder="Choose a username" required>
+                </div>
+                <div>
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" placeholder="Create a strong password" required>
+                </div>
+                <button type="submit">Register</button>
+                <p id="register-error" class="error-message" style="display:none;"></p>
+            </form>
+            <p class="switch-form-link">Already have an account? <a href="#" id="show-login-link">Login here</a></p>
+        </div>
+    </div>
+
+    <!-- Main Application Container (Initially hidden) -->
+    <div id="app-container" style="display:none;">
+        <header id="app-header">
+            <button id="menu-toggle-button" aria-label="Toggle conversations panel" title="Toggle conversations">
+                <span class="material-icons-outlined">menu</span>
+            </button>
+            <h1>AI Chat</h1> <!-- Simpler title -->
+            <div id="user-info">
+                <span>Logged in as: <strong id="current-username-display">User</strong></span>
+                <button id="logout-button" title="Logout">Logout</button>
+            </div>
+        </header>
+        
+        <div class="main-chat-layout"> <!-- This class is targeted by JS to toggle panel visibility effect -->
+            <!-- Sliding Conversation Panel -->
+            <aside id="conversations-list-panel" class="collapsible-panel">
+                <div class="panel-header">
+                    <h2>Conversations</h2>
+                    <button id="new-chat-button" title="Start a new conversation">
+                        <span class="material-icons-outlined" style="font-size: 1.1em; vertical-align: middle; margin-right: 4px;">add_circle_outline</span>
+                        New Chat
+                    </button>
+                </div>
+                <ul id="conversations-ul">
+                    <!-- Conversation items will be populated by JavaScript: -->
+                    <!-- <li data-id="1" class="active">My First Chat</li> -->
+                    <!-- <li data-id="2">Interesting Topic</li> -->
+                </ul>
+            </aside>
+
+            <!-- Main Chat Interface -->
+            <main id="chat-interface">
+                <div id="chat-messages-display">
+                    <!-- Initial placeholder message -->
+                    <p class="placeholder-message">Select a conversation from the left, or click "New Chat" to begin.</p>
+                    <!-- Chat messages will be appended here by JavaScript: -->
+                    <!-- Example structure for a message (generated by JS):
+                    <div class="message-row user-row">
+                        <div class="message-bubble user">
+                            <span class="role">USER</span>
+                            <div class="content">Hello AI!</div>
+                            <span class="timestamp">11/20/2023, 10:30:00 AM</span>
+                        </div>
+                        <div class="avatar user-avatar">U</div>
+                    </div>
+                    <div class="message-row model-row">
+                        <div class="avatar model-avatar">AI</div>
+                        <div class="message-bubble model">
+                            <span class="role">MODEL</span>
+                            <div class="content">Hello User! How can I help you today?</div>
+                            <span class="timestamp">11/20/2023, 10:30:05 AM</span>
+                        </div>
+                    </div>
+                    -->
+                </div>
+                <form id="message-input-form">
+                    <input type="text" id="message-input-field" placeholder="Type your message..." autocomplete="off" required>
+                    <button type="submit" id="send-button" title="Send message">
+                        <span class="material-icons-outlined">send</span>
+                    </button>
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

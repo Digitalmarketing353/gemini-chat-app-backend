@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - <%= title %></title>
+    <link rel="stylesheet" href="/admin/static/css/admin-styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-brand">Gemini AI Admin</div> <!-- Optional Brand Name -->
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/users">Users</a>
+        <div style="margin-left: auto;"> <!-- Pushes logout to the right -->
+            <% if (typeof loggedInUser !== 'undefined' && loggedInUser) { %>
+                <span style="color: #bdc3c7; margin-right: 15px;">Logged in as: <%= loggedInUser.username %></span>
+                <a href="/admin/logout">Logout</a>
+            <% } %>
+        </div>
+    </nav>
+    <div class="container">
+        <%- body %>
+    </div>
+    <!-- You might have a public_admin/js/admin-script.js later -->
+    <script src="/admin/static/js/admin-script.js" defer></script>
+</body>
+</html>

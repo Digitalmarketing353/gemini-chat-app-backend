@@ -1,0 +1,34 @@
+
+<!-- src/views/admin/users.ejs -->
+<h1>Users</h1>
+<% if (typeof users !== 'undefined' && users && users.length > 0) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Registered At</th>
+                <th>Is Admin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(function(user) { %>
+                <tr>
+                    <td><%= user.id %></td>
+                    <td><%= user.username %></td>
+                    <td><%= new Date(user.createdAt).toLocaleString() %></td>
+                    <td><%= user.isAdmin ? 'Yes' : 'No' %></td>
+                    <td>
+                        <!-- This link goes to the route that shows conversations for this user.id -->
+                        <a href="/admin/users/<%= user.id %>/conversations">View Conversations</a>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% } else if (typeof users !== 'undefined' && users.length === 0) { %>
+    <p>No users found in the database.</p>
+<% } else { %>
+    <p>Error: Users data not available to display.</p>
+<% } %>

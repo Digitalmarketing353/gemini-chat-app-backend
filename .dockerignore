@@ -1,0 +1,41 @@
+node_modules
+npm-debug.log
+logs/
+*.log
+
+# Local development files
+.env
+.env.*
+!/.env.example # If you have an example .env you want to commit
+
+# Local database files (assuming production uses a volume or external DB)
+data/
+*.sqlite
+*.sqlite-journal
+
+# Local Docker testing artifacts
+data_docker/
+
+# IDE and OS specific files
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+
+# Git files
+.git
+.gitignore
+
+# Dockerfile itself is not needed inside the image
+Dockerfile
+
+# Documentation / Readmes (unless part of a static site served by app)
+*.md
+LICENSE
+
+# Test files (if not needed in production image)
+test/
+tests/
+*.test.js
+*.spec.js
+coverage/

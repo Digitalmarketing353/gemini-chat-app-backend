@@ -1,0 +1,32 @@
+  <h1>Conversations for User: <%= user.username %> (ID: <%= user.id %>)</h1>
+  <p><a href="/admin/users">« Back to Users List</a></p>
+
+  <% if (conversations && conversations.length) { %>
+      <table>
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Last Updated</th>
+                  <th>Created At</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+              <% conversations.forEach(convo => { %>
+                  <tr>
+                      <td><%= convo.id %></td>
+                      <td><%= convo.title %></td>
+                      <td><%= new Date(convo.updatedAt).toLocaleString() %></td>
+                      <td><%= new Date(convo.createdAt).toLocaleString() %></td>
+                      <td>
+                          <a href="/admin/conversations/<%= convo.id %>/messages">View Messages</a>
+                      </td>
+                  </tr>
+              <% }) %>
+          </tbody>
+      </table>
+  <% } else { %>
+      <p>No conversations found for this user.</p>
+  <% } %>
+  ```
